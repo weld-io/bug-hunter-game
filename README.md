@@ -21,9 +21,17 @@ Server will default to **http://localhost:3033**
 	npm test
 
 
+## Entities
+
+* Bug: similar to GitHub issue.
+* Bug Update: a _change_ e.g. bug opened/closed.
+
+
 ## REST API
 
-### DataRows
+### Bugs
+
+### Bug Updates
 
 List bug updates
 
