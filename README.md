@@ -48,3 +48,12 @@ Delete bug update:
 Delete all bug updates:
 
 	curl -X DELETE http://localhost:3033/api/updates/ALL
+
+
+## Deploying on Heroku
+
+	# Set up and configure app
+	heroku create MYAPPNAME
+	heroku config:set NODE_ENV=production
+	heroku addons:create mongolab
+	git push heroku master
