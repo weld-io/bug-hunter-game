@@ -6,11 +6,9 @@
 	<ul>
 		<% updates.forEach(function (update) { %>
 			<li>
-				<%= update._id %>
-				<%= formatDate(update.created_at) %>:
 				<strong><%= update.username %></strong>
-				<%= update.action %>
-				<%= update.points %>
+				<%= update.points %> points
+				(<%= update.action %>, <%= formatDate(update.created_at) %>, <%= update._id %>)
 			</li>
 		<% }) %>
 	</ul>
