@@ -23,6 +23,8 @@ module.exports = function (app, config) {
 	router.put('/api/updates/:id', apiBugUpdatesController.update);
 	router.delete('/api/updates/:id', apiBugUpdatesController.delete);
 
+	router.post('/api/github-issues', apiBugUpdatesController.createGithubIssue);
+
 	router.get('/updates', webBugUpdatesController.index);
 
 };

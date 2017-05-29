@@ -26,7 +26,20 @@ module.exports = {
 
 	// Create new update
 	create: function (req, res, next) {
-		console.log('**CREATE', req.body);
+		var newBugUpdate = new BugUpdate(req.body);
+		newBugUpdate.save(function (err) {
+			if (err) {
+				return res.json(400, err);
+			}
+			else {
+				return res.json(newBugUpdate);
+			}
+		});
+	},
+
+	// Create new GitHub Issue
+	createGithubIssue: function (req, res, next) {
+		console.log('**CREATE GH', req.body);
 		var newBugUpdate = new BugUpdate(req.body);
 		newBugUpdate.save(function (err) {
 			if (err) {
