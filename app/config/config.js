@@ -32,7 +32,7 @@ var config = {
 			name: 'bug-hunter-game'
 		},
 		port: 3000,
-		db: process.env.MONGOHQ_URL || 'mongodb://localhost/bug-hunter-game-production'
+		db: process.env.MONGODB_URI || 'mongodb://localhost/bug-hunter-game-production'
 
 	}
 
