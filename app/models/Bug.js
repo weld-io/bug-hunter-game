@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const findOrCreate = require('mongoose-findorcreate');
 const Schema = mongoose.Schema;
 
 // https://developer.github.com/v3/activity/events/types/#issuesevent
@@ -15,5 +16,7 @@ const BugSchema = new Schema({
 	closed_at: Date,
 	labels: [String],
 });
+
+BugSchema.plugin(findOrCreate);
 
 mongoose.model('Bug', BugSchema);

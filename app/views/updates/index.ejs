@@ -7,16 +7,9 @@
 		<% updates.forEach(function (update) { %>
 			<li>
 				<%= formatDate(update.created_at) %>:
-				<strong><%= update.title %>.</strong>
-				<% if (update.description) { %>
-					<%= update.description %>
-				<% } %>
-				<% if (update.url) { %>
-					<a href="<%= update.url %>" target="_blank">Link</a> |
-				<% } %>
-				<% if (update.imageUrl) { %>
-					<a href="<%= update.imageUrl %>" target="_blank">Image</a>
-				<% } %>
+				<strong><%= update.username %></strong>
+				<%= update.action %>
+				<%= update.points %>
 			</li>
 		<% }) %>
 	</ul>
