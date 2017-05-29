@@ -6,6 +6,7 @@
 	<ul>
 		<% updates.forEach(function (update) { %>
 			<li>
+				<%= update._id %>
 				<%= formatDate(update.created_at) %>:
 				<strong><%= update.username %></strong>
 				<%= update.action %>

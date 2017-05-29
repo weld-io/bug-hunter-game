@@ -20,6 +20,7 @@ module.exports = function (app, config) {
 
 	router.get('/api/updates', apiBugUpdatesController.list);
 	router.post('/api/updates', apiBugUpdatesController.create);
+	router.put('/api/updates/recalculate', apiBugUpdatesController.recalculate);
 	router.put('/api/updates/:id', apiBugUpdatesController.update);
 	router.delete('/api/updates/:id', apiBugUpdatesController.delete);
 

@@ -39,19 +39,24 @@ List bug updates
 
 Get a specific bug update
 
-	curl http://localhost:3033/api/updates/[ROW_ID]
+	curl http://localhost:3033/api/updates/[UPDATE_ID]
 
 Create new bug update:
 
 	curl -X POST -H "Content-Type: application/json" -d '{}' http://localhost:3033/api/updates
 
-Update bug update:
+Update a bug update:
 
-	curl -X PUT -H "Content-Type: application/json" -d '{}' http://localhost:3033/api/updates/[ROW_ID]
+	curl -X PUT -H "Content-Type: application/json" -d '{}' http://localhost:3033/api/updates/[UPDATE_ID]
+
+Recalculate a bug update:
+
+	curl -X PUT -H "Content-Type: application/json" http://localhost:3033/api/updates/recalculate # Recalculate all
+	curl -X PUT -H "Content-Type: application/json" -d '{ "ids": ["592ba447c8ab0281d22bfae3"] }' http://localhost:3033/api/updates/recalculate
 
 Delete bug update:
 
-	curl -X DELETE http://localhost:3033/api/updates/[ROW_ID]
+	curl -X DELETE http://localhost:3033/api/updates/[UPDATE_ID]
 
 Delete all bug updates:
 

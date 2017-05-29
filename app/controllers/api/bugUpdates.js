@@ -17,22 +17,26 @@ const calculatePoints = function (action, bug) {
 		case 'reopened':
 			basePoints = 10;
 			break;
+		case 'edited':
+			basePoints = 2;
+			break;
+		case 'labeled':
+		case 'unlabeled':
+		case 'assigned':
+		case 'unassigned':
+			basePoints = 1;
+			break;
 		default:
 			basePoints = 0;
 			break;
-		//case 'assigned':
-		//case 'unassigned':
-		//case 'labeled':
-		//case 'unlabeled':
-		//case 'edited':
 		//case 'milestoned':
 		//case 'demilestoned':
 	}
 	var priorityPoints = 1;
-	if (_.includes(bug.labels, 'prio 1')) {
+	if (_.has(bug, 'labels') && _.includes(bug.labels, 'prio 1')) {
 		priorityPoints = 3;
 	}
-	else if (_.includes(bug.labels, 'prio 2')) {
+	else if (_.has(bug, 'labels') && _.includes(bug.labels, 'prio 2')) {
 		priorityPoints = 2;
 	}
 	return basePoints * priorityPoints;
@@ -74,23 +78,6 @@ module.exports = {
 	createGithubIssue: function (req, res, next) {
 		console.log('**CREATE GH', req.body);
 
-		const validateGithubIssue = function (data, cb) {
-			var err;
-			if (!_.has(data, 'action')) {
-				err = 'Missing property: action';
-			}
-			else if (!_.has(data, 'sender.login')) {
-				err = 'Missing property: sender.login';
-			}
-			else if (!_.has(data, 'repository.id')) {
-				err = 'Missing property: repository.id';
-			}
-			else if (!_.has(data, 'issue.id')) {
-				err = 'Missing property: issue.id';
-			}
-			cb(err, data);
-		};
-
 		const createBug = function (data, cb) {
 			// Convert issue to Bug
 			var bugObj = _.merge({}, data.issue);
@@ -123,7 +110,24 @@ module.exports = {
 			newBugUpdate.save(cb);
 		};
 
-		const whenAllDone = function (err, newBugUpdate) {
+		const validateRequest = function (data, cb) {
+			var err;
+			if (!_.has(data, 'action')) {
+				err = 'Missing property: action';
+			}
+			else if (!_.has(data, 'sender.login')) {
+				err = 'Missing property: sender.login';
+			}
+			else if (!_.has(data, 'repository.id')) {
+				err = 'Missing property: repository.id';
+			}
+			else if (!_.has(data, 'issue.id')) {
+				err = 'Missing property: issue.id';
+			}
+			cb(err, data);
+		};
+
+		const sendResponse = function (err, newBugUpdate) {
 			if (err) {
 				return res.status(400).json(err);
 			}
@@ -133,11 +137,11 @@ module.exports = {
 		};
 
 		async.waterfall([
-				validateGithubIssue.bind(this, req.body),
+				validateRequest.bind(this, req.body),
 				createBug,
 				createBugUpdate,
 			],
-			whenAllDone
+			sendResponse
 		);
 	},
 
@@ -154,6 +158,64 @@ module.exports = {
 					res.json(200, 'BugUpdated update ' + req.params.id);
 				}
 			}
+		);
+	},
+
+	// BugUpdate recalculate
+	recalculate: function (req, res, next) {
+
+		const findBugUpdates = function (idArray, cb) {
+			var query = {};
+			if (idArray) {
+				query._id = { $in: idArray };
+			}
+			BugUpdate.find(query, cb);
+		};
+
+		const getBugForBugUpdate = function (bugUpdate, cb) {
+			Bug.findById(bugUpdate.bug, cb);
+		};
+
+		const updateBugUpdates = function (bugUpdates, cb) {
+			async.each(bugUpdates,
+				// For each
+				function (bugUpdate, cbEach) {
+					getBugForBugUpdate(bugUpdate, function (err, bug) {
+						if (err || !bug) {
+							cbEach(err);
+						}
+						else {
+							bugUpdate.points = calculatePoints(bugUpdate.action, bug);
+							bugUpdate.save(cbEach);							
+						}
+					})
+				},
+				// When all done
+				function (err) {
+					cb(err, bugUpdates.length + ' updated');
+				}
+			);
+		};
+
+		const validateRequest = function (data, cb) {
+			cb(null, _.get(data, 'ids'));
+		};
+
+		const sendResponse = function (err, result) {
+			if (err) {
+				return res.status(400).json(err);
+			}
+			else {
+				return res.json({ result: result });
+			}
+		};
+
+		async.waterfall([
+				validateRequest.bind(this, req.body),
+				findBugUpdates,
+				updateBugUpdates,
+			],
+			sendResponse
 		);
 	},
 
