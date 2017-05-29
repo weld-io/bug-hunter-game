@@ -1,0 +1,25 @@
+<% include ../header %>
+
+<h1><%- title %></h1>
+
+<% if (updates.length) { %>
+	<ul>
+		<% updates.forEach(function (update) { %>
+			<li>
+				<%= formatDate(update.created_at) %>:
+				<strong><%= update.title %>.</strong>
+				<% if (update.description) { %>
+					<%= update.description %>
+				<% } %>
+				<% if (update.url) { %>
+					<a href="<%= update.url %>" target="_blank">Link</a> |
+				<% } %>
+				<% if (update.imageUrl) { %>
+					<a href="<%= update.imageUrl %>" target="_blank">Image</a>
+				<% } %>
+			</li>
+		<% }) %>
+	</ul>
+<% } %>
+
+<% include ../footer %>
