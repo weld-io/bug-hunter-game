@@ -1,11 +1,11 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var _ = require('lodash');
-var async = require('async');
+const mongoose = require('mongoose');
+const _ = require('lodash');
+const async = require('async');
 
-var Bug = mongoose.model('Bug');
-var BugUpdate = mongoose.model('BugUpdate');
+const Bug = mongoose.model('Bug');
+const BugUpdate = mongoose.model('BugUpdate');
 
 const calculatePoints = function (action, bug) {
 	var basePoints;

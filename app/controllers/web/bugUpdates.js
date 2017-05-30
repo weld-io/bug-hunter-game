@@ -1,7 +1,10 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var BugUpdate = mongoose.model('BugUpdate');
+const mongoose = require('mongoose');
+const _ = require('lodash');
+const async = require('async');
+
+const BugUpdate = mongoose.model('BugUpdate');
 
 module.exports = {
 
