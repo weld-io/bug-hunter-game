@@ -8,13 +8,28 @@ const BugUpdate = mongoose.model('BugUpdate');
 
 module.exports = {
 
-	index: function (req, res, next) {
-		BugUpdate.find().sort({ dateCreated: -1 }).exec(function (err, updates) {
+	list: function (req, res, next) {
+		var searchQuery = {};
+		if (req.params.username) {
+			searchQuery.username = req.params.username;
+		}
+		if (req.params.startDate) {
+			searchQuery['created_at'] = searchQuery['created_at'] || {};
+			searchQuery['created_at']['$gte'] = new Date(req.params.startDate);
+		}
+		if (req.params.endDate) {
+			searchQuery['created_at'] = searchQuery['created_at'] || {};
+			searchQuery['created_at']['$lt'] = new Date(req.params.endDate);
+		}
+		const sorting = { 'created_at': -1 };
+		// Execute query
+		BugUpdate.find(searchQuery).sort(sorting).limit(200).populate('bug').exec(function (err, bugUpdates) {
+			console.log(bugUpdates);
 			if (err)
 				return next(err);
-			res.render('updates/index', {
-				title: 'All bug updates',
-				updates: updates
+			res.render('updates/list', {
+				title: 'Bug updates',
+				bugUpdates: bugUpdates
 			});
 		});
 	}

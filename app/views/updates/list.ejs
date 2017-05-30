@@ -1,0 +1,28 @@
+<% include ../shared/header %>
+
+<h1><%- title %></h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>User</th>
+			<th>Action</th>
+			<th>Issue</th>
+			<th>Points</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% bugUpdates.forEach(function (bugUpdate) { %>
+			<tr>
+				<td><a title="<%= bugUpdate._id %>"><%= formatDate(bugUpdate.created_at) %></a></td>
+				<td><%= bugUpdate.username %></td>
+				<td><%= bugUpdate.action %></td>
+				<td><a href="<%= bugUpdate.bug.url %>"><%= bugUpdate.bug.title %></a></td>
+				<td><%= bugUpdate.points %> points</td>
+			</tr>
+		<% }) %>
+	</tbody>
+</table>
+
+<% include ../shared/footer %>

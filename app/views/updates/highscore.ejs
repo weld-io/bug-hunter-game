@@ -30,7 +30,7 @@
 			<tr>
 				<td><%= scoreRow.timevalue %></td>
 				<td><%= scoreRow.username %></td>
-				<td><%= scoreRow.points %> points</td>
+				<td><a href="/updates/<%= scoreRow.username %>/<%= timeperiod.startDate %>/<%= timeperiod.endDate %>"><%= scoreRow.points %> points</a></td>
 			</tr>
 		<% }) %>
 	</tbody>

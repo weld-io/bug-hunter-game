@@ -81,8 +81,9 @@ module.exports = {
 		const createBug = function (data, cb) {
 			// Convert issue to Bug
 			var bugObj = _.merge({}, data.issue);
-			bugObj.githubIssueId = data.issue.id;
 			bugObj.githubRepositoryId = data.repository.id;
+			bugObj.githubIssueId = data.issue.id;
+			bugObj.url = data.issue.html_url;
 			bugObj.labels = _.map(data.issue.labels, 'name');
 			Bug.findOrCreate({ githubIssueId: data.issue.id }, bugObj, function (err, bug, wasCreated) {
 				if (wasCreated) {

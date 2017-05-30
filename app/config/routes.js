@@ -27,7 +27,8 @@ module.exports = function (app, config) {
 	var webBugUpdatesController = require(config.root + '/app/controllers/web/bugUpdates');
 	var webHighscoreController = require(config.root + '/app/controllers/web/highscore');
 
-	router.get('/updates', webBugUpdatesController.index);
+	router.get('/updates/:username/:startDate/:endDate', webBugUpdatesController.list);
+	router.get('/updates', webBugUpdatesController.list);
 	router.get('/highscore/:grouping/:startDate/:endDate', webHighscoreController.index);
 	router.get('/highscore/:grouping', webHighscoreController.index);
 	router.get('/highscore', webHighscoreController.index);
