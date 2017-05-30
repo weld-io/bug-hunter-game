@@ -22,7 +22,8 @@
     "mongodb": "^2.2.26",
     "mongoose": "^4.9.8",
     "mongoose-findorcreate": "^1.0.1",
-    "morgan": "^1.8.1"
+    "morgan": "^1.8.1",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0",

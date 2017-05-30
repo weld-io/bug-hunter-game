@@ -7,6 +7,10 @@ const moment = require('moment');
 
 const BugUpdate = mongoose.model('BugUpdate');
 
+const getWeekDate = function (incr) {
+	const monday = moment().startOf('isoweek').add((incr || 0), 'weeks');
+	return monday.format('YYYY-MM-DD');
+};
 
 const getYearDate = function (incr) {
 	const year = (new Date()).getYear() + 1900 + (incr || 0);
@@ -28,18 +32,9 @@ const getTimeValue = function (dateObj, grouping) {
 };
 
 const calculateHighscore = function (timeper, callback) {
-	const testData = [
-		{ username: 'tomsoderlund', points: 123 },
-		{ username: 'henricM', points: 123 },
-		{ username: 'tomsoderlund', points: 123 },
-		{ username: 'henricM', points: 123 },
-		{ username: 'tomsoderlund', points: 123 },
-		{ username: 'henricM', points: 123 },
-	];
 
 	var searchQuery = {};
 	if (_.has(timeper, 'startDate')) {
-		var currentTime = new Date();
 		searchQuery['created_at'] = { "$gte": new Date(timeper.startDate), "$lt": new Date(timeper.endDate) };
 	}
 
@@ -71,6 +66,11 @@ const calculateHighscore = function (timeper, callback) {
 
 module.exports = {
 
+	getWeekDate: getWeekDate,
+	getYearDate: getYearDate,
+	calculateHighscore: calculateHighscore,
+
+
 	index: function (req, res, next) {
 
 		const timeperiod = {
@@ -92,6 +92,6 @@ module.exports = {
 		};
 
 		calculateHighscore(timeperiod, renderHighscore);
-	}
+	},
 
 }
