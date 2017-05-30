@@ -22,7 +22,7 @@ const run = function () {
 	const postMessageToSlack = function (msg, cb) {
 		var payload = { text: msg };
 		var url = process.env.SLACK_WEBHOOK_URL;
-		request({ method: 'PUT', url: url, json: payload }, cb);
+		request({ method: 'POST', url: url, json: payload }, cb);
 	};
 
 	const formatResults = function (timeper, results, cb) {
