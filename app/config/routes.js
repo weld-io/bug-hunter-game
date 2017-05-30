@@ -29,7 +29,7 @@ module.exports = function (app, config) {
 
 	router.get('/updates', webBugUpdatesController.index);
 	router.get('/highscore/:grouping/:startDate/:endDate', webHighscoreController.index);
-	router.get('/highscore/*', webHighscoreController.index);
+	router.get('/highscore/:grouping', webHighscoreController.index);
 	router.get('/highscore', webHighscoreController.index);
 	router.get('/', webStartController.index);
 

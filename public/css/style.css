@@ -99,6 +99,17 @@ select:focus {
 
 /* ----- Highscore ----- */
 
+nav {
+	background-color: #cfd5da;
+	padding: 1em;
+	margin: 1em 0;
+	font-size: 80%;
+}
+
+.datePickers {
+	display: inline-block;
+}
+
 .current {
 	font-weight: bold;
 }
