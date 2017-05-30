@@ -16,6 +16,7 @@ models.forEach(function (model) {
 const app = express();
 
 require('./config/express')(app, config);
+require('./config/helpers')(app, config);
 
 module.exports = app;
 module.exports.closeDatabase = function () {

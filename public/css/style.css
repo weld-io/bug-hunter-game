@@ -1,0 +1,104 @@
+/*
+
+#000000
+#252b30
+#4b5560
+#708090
+#a0aab5
+#cfd5da
+#ffffff
+
+*/
+
+body {
+	font-family: sans-serif;
+	color: #4b5560;
+	font-size: 20px;
+	margin: 0;
+	padding: 5vw;
+}
+
+h1, h2, h3 {
+	line-height: 1em;
+	margin: 0;
+}
+
+/* Nice & simple: Table - https://codepen.io/tomsoderlund/pen/mmZrRR */
+table {
+	border-collapse: collapse;
+}
+
+td, th {
+	border: 2px solid #708090;
+	padding: 0.5em;
+}
+
+thead tr {
+	background-color: #708090;
+	color: white;
+}
+
+tr:nth-child(2n+0) {
+	background-color: #cfd5da;
+}
+
+/* Nice & simple: Button - http://codepen.io/tomsoderlund/pen/qqyzqp */
+button {
+	background-color: dodgerblue;
+	border-radius: 0.2em;
+	border: none;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+	box-sizing: border-box;
+	color: white;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: inherit;
+	min-width: 15em;
+	outline: none;
+	padding: 0.6em;
+	margin: 0.2em;
+	transition: all 0.2s;
+}
+button:hover {
+	opacity: 0.8;
+	transition: box-shadow 0s;
+}
+button:active {
+	margin-top: 0.3em;
+	margin-bottom: 0.1em;
+	box-shadow: 0 0.5px 2px rgba(0,0,0,0.4);
+}
+
+/* Nice & simple: Input and Dropdown Menu - http://codepen.io/tomsoderlund/pen/GNBbWz */
+input,
+textarea,
+select {
+	outline: none;
+	resize: none;
+	box-sizing: border-box;
+	background-color: white;
+	border-radius: 0.2em;
+	border: 2px solid lightgray;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	/*min-width: 15em;*/
+	padding: 0.6em;
+	margin: 0.2em;
+}
+input:hover,
+textarea:hover,
+select:hover {
+	border-color: silver;
+}
+input:focus,
+textarea:focus,
+select:focus {
+	border-color: darkgray;
+}
+
+/* ----- Highscore ----- */
+
+.current {
+	font-weight: bold;
+}

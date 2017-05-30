@@ -1,17 +1,33 @@
-<% include ../header %>
+<% include ../shared/header %>
 
 <h1><%- title %></h1>
 
-<% if (updates.length) { %>
-	<ul>
-		<% updates.forEach(function (update) { %>
-			<li>
-				<strong><%= update.username %></strong>
-				<%= update.points %> points
-				(<%= update.action %>, <%= formatDate(update.created_at) %>, <%= update._id %>)
-			</li>
-		<% }) %>
-	</ul>
-<% } %>
+<nav>
+	<span class="periods">
+		<%- optionalAnchorTag('Weekly', '/highscore/weekly/' + timeperiod.startDate + '/' + timeperiod.endDate, currentHref) %>
+		<%- optionalAnchorTag('Monthly', '/highscore/monthly/' + timeperiod.startDate + '/' + timeperiod.endDate, currentHref) %>
+		<%- optionalAnchorTag('Yearly', '/highscore/yearly/' + timeperiod.startDate + '/' + timeperiod.endDate, currentHref) %>
+		<%- optionalAnchorTag('All time', '/highscore/all-time', currentHref) %>
+	</span>
+	<input type="date" name="startDate" value="<%= timeperiod.startDate %>" onchange="BugHunterGame.changeDate(this.value, ['<%= timeperiod.grouping %>', '<%= timeperiod.startDate %>', '<%= timeperiod.endDate %>'], 1)">
+	<input type="date" name="endDate" value="<%= timeperiod.endDate %>" onchange="BugHunterGame.changeDate(this.value, ['<%= timeperiod.grouping %>', '<%= timeperiod.startDate %>', '<%= timeperiod.endDate %>'], 2)">
+</nav>
 
-<% include ../footer %>
+<table>
+	<thead>
+		<tr>
+			<th>User</th>
+			<th>Points</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% scoreList.forEach(function (scoreRow) { %>
+			<tr>
+				<td><%= scoreRow.username %></td>
+				<td><%= scoreRow.points %> points</td>
+			</tr>
+		<% }) %>
+	</tbody>
+</table>
+
+<% include ../shared/footer %>
