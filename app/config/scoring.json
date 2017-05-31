@@ -2,7 +2,7 @@
 	"basepoints": "0",
 	"actions": {
 		"closed": "+50",
-		"opened": "+10",
+		"opened": "+25",
 		"reopened": "+10",
 		"edited": "+2",
 		"labeled": "+1",
