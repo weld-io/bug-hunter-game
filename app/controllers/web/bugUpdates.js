@@ -24,7 +24,6 @@ module.exports = {
 		const sorting = { 'created_at': -1 };
 		// Execute query
 		BugUpdate.find(searchQuery).sort(sorting).limit(200).populate('bug').exec(function (err, bugUpdates) {
-			console.log(bugUpdates);
 			if (err)
 				return next(err);
 			res.render('updates/list', {

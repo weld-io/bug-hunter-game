@@ -2,8 +2,6 @@
 
 const scoringTable = require('../../config/scoring');
 
-console.log(scoringTable);
-
 module.exports = {
 
 	index: function (req, res, next) {

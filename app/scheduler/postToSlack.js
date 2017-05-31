@@ -44,7 +44,7 @@ const run = function () {
 			}, '');
 			const message = 'This week’s bug hunting: ' + userSummary + '.\n'
 				+ process.env.HOSTNAME + '/highscore/weekly';
-			console.log(message);
+			console.log('Slack message:', message);
 			cb(null, message);
 		}
 	};
