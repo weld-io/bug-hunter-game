@@ -26,29 +26,32 @@ const run = function () {
 	};
 
 	const formatResults = function (timeper, results, cb) {
-		const userSummary = _.reduce(results, function (oldStr, res) {
-			if (oldStr === '')
-				return oldStr + `*${res.username}* is in the lead with ${res.points} points`;
-			else
-				return oldStr + `, then *${res.username}* (${res.points} points)`;
-		}, '');
-		const message = 'This week’s bug hunting: ' + userSummary + '.\n'
-			+ process.env.HOSTNAME + '/highscore/weekly';
-		console.log(message);
-		cb(null, message);
+		if (results.length === 0) {
+			cb('Nothing to post.');
+		}
+		else {
+			const userSummary = _.reduce(results, function (oldStr, res) {
+				if (oldStr === '')
+					return oldStr + `*${res.username}* is in the lead with ${res.points} points`;
+				else
+					return oldStr + `, then *${res.username}* (${res.points} points)`;
+			}, '');
+			const message = 'This week’s bug hunting: ' + userSummary + '.\n'
+				+ process.env.HOSTNAME + '/highscore/weekly';
+			console.log(message);
+			cb(null, message);
+		}
 	};
 
 	const whenWaterfallDone = function (err, result) {
-		// err truthy if err in any function
-		// result now equals 'done'
-		console.log('whenWaterfallDone', err, result);
+		console.log('postMessageToSlack done:', err, result);
+		app.closeDatabase();
 	}
 
 	async.waterfall([
 			webHighscoreController.calculateHighscore.bind(this, timeperiod),
 			formatResults,
 			postMessageToSlack,
-			app.closeDatabase,
 		],
 		whenWaterfallDone
 	);
