@@ -1,0 +1,20 @@
+{
+	"basepoints": "0",
+	"actions": {
+		"closed": "+50",
+		"opened": "+10",
+		"reopened": "+10",
+		"edited": "+2",
+		"labeled": "+1",
+		"unlabeled": "+1",
+		"assigned": "+1",
+		"unassigned": "+1",
+		"milestoned": "+0",
+		"demilestoned": "+0"
+	},
+	"labels": {
+		"prio 1": "*3",
+		"prio 2": "*2",
+		"prio 3": "*1"
+	}
+}

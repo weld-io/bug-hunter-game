@@ -113,6 +113,7 @@ Adapted from [GitHub’s example](https://developer.github.com/v3/activity/event
 	heroku create MYAPPNAME
 	heroku config:set NODE_ENV=production
 	heroku config:set HOSTNAME=https://MYAPPNAME.herokuapp.com
+	heroku config:set GITHUB_PROJECT_ID=weld-io/weld-angular-node
 	heroku config:set SLACK_WEBHOOK_URL=https://hooks.slack.com/services/...
 	heroku addons:create mongolab
 	git push heroku master

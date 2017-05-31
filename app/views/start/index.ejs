@@ -2,7 +2,22 @@
 
 <h1><%- title %></h1>
 
-<p><a href="/highscore">Highscore</a></p>
-<p><a href="/updates">Bug updates</a></p>
+<nav>
+	<a href="/highscore">Highscore</a>
+	|
+	<a href="/updates">Bug updates</a>
+</nav>
+
+<h2>How to get points</h2>
+
+<ol>
+	<li>Go to <a href="<%- githubUrl %>" target="github">GitHub Issues for your project</a>.</li>
+	<li>Create, close, or edit issues.</li>
+	<li>Track progress on the <a href="/highscore">Highscore</a>.</li>
+</ol>
+
+<h2>Scoring</h2>
+
+<%- objectToHtml(scoringTable) %>
 
 <% include ../shared/footer %>
