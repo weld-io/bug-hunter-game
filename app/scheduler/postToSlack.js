@@ -11,6 +11,9 @@ var app = require('../app');
 var webHighscoreController = require('../controllers/web/highscore');
 
 
+const DEBUG_NO_SLACK = false;
+
+
 const run = function () {
 
 	const timeperiod = {
@@ -22,7 +25,10 @@ const run = function () {
 	const postMessageToSlack = function (msg, cb) {
 		var payload = { text: msg };
 		var url = process.env.SLACK_WEBHOOK_URL;
-		request({ method: 'POST', url: url, json: payload }, cb);
+		if (DEBUG_NO_SLACK)
+			cb();
+		else
+			request({ method: 'POST', url: url, json: payload }, cb);
 	};
 
 	const formatResults = function (timeper, results, cb) {
@@ -44,7 +50,7 @@ const run = function () {
 	};
 
 	const whenWaterfallDone = function (err, result) {
-		console.log('postMessageToSlack done:', err, result);
+		console.log('postMessageToSlack done (debug=%s):', DEBUG_NO_SLACK, err, result);
 		app.closeDatabase();
 	}
 
