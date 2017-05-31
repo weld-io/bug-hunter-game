@@ -20,8 +20,21 @@ body {
 
 main {
 	padding: 5vw;
-	max-width: 40em;
+	max-width: 40rem;
 	margin: auto;
+}
+
+nav {
+	background-color: #cfd5da;
+	padding: 1em;
+	margin: 1em 0;
+	font-size: 80%;
+}
+
+nav#main-navigation {
+	max-width: 40rem;
+	margin: auto;
+	margin: -5vw 0 5vw;
 }
 
 h1, h2, h3 {
@@ -104,13 +117,6 @@ select:focus {
 }
 
 /* ----- Highscore ----- */
-
-nav {
-	background-color: #cfd5da;
-	padding: 1em;
-	margin: 1em 0;
-	font-size: 80%;
-}
 
 .datePickers {
 	display: inline-block;
