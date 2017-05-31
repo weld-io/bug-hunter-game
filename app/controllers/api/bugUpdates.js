@@ -15,6 +15,7 @@ const calculatePoints = function (action, bug) {
 			break;
 		case 'opened':
 			basePoints = 25;
+			break;
 		case 'reopened':
 			basePoints = 10;
 			break;
