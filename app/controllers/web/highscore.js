@@ -17,18 +17,32 @@ const getYearDate = function (incr) {
 	return year + '-01-01';
 };
 
-const getTimeValue = function (dateObj, grouping) {
+const getTimeValues = function (dateObj, grouping) {
 	const momDate = moment(dateObj);
+	const values = {};
 	switch (grouping) {
+		case 'daily':
+			values.timevalue = momDate.format('YYYY-MM-DD');
+			values.timevalueToDisplay = momDate.format('MMM D (ddd)');
+			break;
 		case 'weekly':
-			return 'w' + momDate.format('W');
+			values.timevalue = momDate.format('YYYY') + '-w' + momDate.format('W');
+			values.timevalueToDisplay = 'w' + momDate.format('W');
+			break;
 		case 'monthly':
-			return momDate.format('MMM');
+			values.timevalue = momDate.format('YYYY-MM');
+			values.timevalueToDisplay = momDate.format('MMM');
+			break;
 		case 'yearly':
-			return momDate.format('YYYY');
+			values.timevalue = momDate.format('YYYY');
+			values.timevalueToDisplay = momDate.format('YYYY');
+			break;
 		default:
-			return null;
+			values.timevalue = null;
+			values.timevalueToDisplay = null;
+			break;
 	}
+	return values;
 };
 
 const calculateHighscore = function (timeper, callback) {
@@ -41,17 +55,19 @@ const calculateHighscore = function (timeper, callback) {
 	BugUpdate.find(searchQuery, null, { sort: { dateCreated: -1 } }, function (err, updates) {
 		// { timevalue: '22', username: 'baxterthehacker', points: 10 },
 		const updatesMod = _.map(updates, function (upd) {
-			return {
-				timevalue: getTimeValue(upd.created_at, timeper.grouping),
+			const values = {
 				username: upd.username,
 				points: upd.points,
 			};
+			_.merge(values, getTimeValues(upd.created_at, timeper.grouping));
+			return values;
 		});
 		// '22-baxterthehacker': { timevalue: '22', username: 'baxterthehacker', points: 10 },
 		const updatesSummary = _.reduce(updatesMod, function (summ, upd) {
 			const keyName = upd.timevalue + '-' + upd.username;
 			const defaultValues = {
 				timevalue: upd.timevalue,
+				timevalueToDisplay: upd.timevalueToDisplay,
 				username: upd.username,
 				points: 0,
 			};

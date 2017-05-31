@@ -4,6 +4,7 @@
 
 <nav>
 	<span class="periods">
+		<%- optionalAnchorTag('Daily', '/highscore/daily/' + timeperiod.startDate + '/' + timeperiod.endDate, currentHref) %>
 		<%- optionalAnchorTag('Weekly', '/highscore/weekly/' + timeperiod.startDate + '/' + timeperiod.endDate, currentHref) %>
 		<%- optionalAnchorTag('Monthly', '/highscore/monthly/' + timeperiod.startDate + '/' + timeperiod.endDate, currentHref) %>
 		<%- optionalAnchorTag('Yearly', '/highscore/yearly/' + timeperiod.startDate + '/' + timeperiod.endDate, currentHref) %>
@@ -28,7 +29,7 @@
 	<tbody>
 		<% scoreList.forEach(function (scoreRow) { %>
 			<tr>
-				<td><%= scoreRow.timevalue %></td>
+				<td><%= scoreRow.timevalueToDisplay %></td>
 				<td><%= scoreRow.username %></td>
 				<td><a href="/updates/<%= scoreRow.username %>/<%= timeperiod.startDate %>/<%= timeperiod.endDate %>"><%= scoreRow.points %> points</a></td>
 			</tr>
