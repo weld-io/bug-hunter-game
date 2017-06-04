@@ -18,8 +18,8 @@ const run = function () {
 
 	const timeperiod = {
 		grouping: 'weekly',
-		startDate: webHighscoreController.getWeekDate(),
-		endDate: webHighscoreController.getWeekDate(+1),
+		startDate: webHighscoreController.getCurrentWeekDate(),
+		endDate: webHighscoreController.getCurrentWeekDate(+1),
 	};
 
 	const postMessageToSlack = function (msg, cb) {
