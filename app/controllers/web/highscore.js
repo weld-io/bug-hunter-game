@@ -24,22 +24,26 @@ const getTimeValues = function (dateObj, grouping) {
 		case 'daily':
 			values.timevalue = momDate.format('YYYY-MM-DD');
 			values.timevalueToDisplay = momDate.format('MMM D (ddd)');
+			values.periodStartDate = momDate.clone().format('YYYY-MM-DD');
+			values.periodEndDate = momDate.clone().add(1, 'days').format('YYYY-MM-DD');
 			break;
 		case 'weekly':
 			values.timevalue = momDate.format('YYYY') + '-w' + momDate.format('W');
 			values.timevalueToDisplay = 'w' + momDate.format('W');
+			values.periodStartDate = momDate.clone().startOf('isoweek').format('YYYY-MM-DD');
+			values.periodEndDate = momDate.clone().startOf('isoweek').add(1, 'weeks').format('YYYY-MM-DD');
 			break;
 		case 'monthly':
 			values.timevalue = momDate.format('YYYY-MM');
 			values.timevalueToDisplay = momDate.format('MMM');
+			values.periodStartDate = momDate.clone().date(1).format('YYYY-MM-DD');
+			values.periodEndDate = momDate.clone().date(1).add(1, 'months').format('YYYY-MM-DD');
 			break;
 		case 'yearly':
 			values.timevalue = momDate.format('YYYY');
 			values.timevalueToDisplay = momDate.format('YYYY');
-			break;
-		default:
-			values.timevalue = null;
-			values.timevalueToDisplay = null;
+			values.periodStartDate = momDate.clone().month(0).date(1).format('YYYY-MM-DD');
+			values.periodEndDate = momDate.clone().month(0).date(1).add(1, 'years').format('YYYY-MM-DD');
 			break;
 	}
 	return values;
@@ -65,12 +69,13 @@ const calculateHighscore = function (timeper, callback) {
 		// '22-baxterthehacker': { timevalue: '22', username: 'baxterthehacker', points: 10 },
 		const updatesSummary = _.reduce(updatesMod, function (summ, upd) {
 			const keyName = upd.timevalue + '-' + upd.username;
-			const defaultValues = {
-				timevalue: upd.timevalue,
-				timevalueToDisplay: upd.timevalueToDisplay,
-				username: upd.username,
-				points: 0,
-			};
+			// const defaultValues = {
+			// 	timevalue: upd.timevalue,
+			// 	timevalueToDisplay: upd.timevalueToDisplay,
+			// 	username: upd.username,
+			// 	points: 0,
+			// };
+			const defaultValues = _.merge({}, upd, { points: 0 });
 			summ[keyName] = summ[keyName] || defaultValues;
 			summ[keyName].points += upd.points;
 			return summ;
