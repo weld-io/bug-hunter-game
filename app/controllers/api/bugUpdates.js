@@ -35,12 +35,13 @@ const calculatePoints = function (action, bug) {
 		//case 'demilestoned':
 	}
 	var priorityPoints = 1;
-	if (_.has(bug, 'labels') && _.includes(bug.labels, 'prio 1')) {
+	if (_.includes(bug.labels, 'prio 1')) {
 		priorityPoints = 3;
 	}
-	else if (_.has(bug, 'labels') && _.includes(bug.labels, 'prio 2')) {
+	else if (_.includes(bug.labels, 'prio 2')) {
 		priorityPoints = 2;
 	}
+	console.log('calculatePoints', action, bug.labels, basePoints, priorityPoints, '=', basePoints * priorityPoints, bug.title);
 	return basePoints * priorityPoints;
 };
 
