@@ -50,7 +50,7 @@ const run = function () {
 	};
 
 	const whenWaterfallDone = function (err, result) {
-		console.log('postMessageToSlack done (debug=%s):', DEBUG_NO_SLACK, err, result);
+		console.log('postMessageToSlack done (debug=%s):', DEBUG_NO_SLACK, err);
 		app.closeDatabase();
 	}
 
