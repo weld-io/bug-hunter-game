@@ -7,8 +7,9 @@
 		<tr>
 			<th>Date</th>
 			<th>User</th>
-			<th>Action</th>
 			<th>Issue</th>
+			<th>Action</th>
+			<th>Labels</th>
 			<th>Points</th>
 		</tr>
 	</thead>
@@ -17,8 +18,9 @@
 			<tr>
 				<td><a title="<%= bugUpdate._id %>"><%= formatDate(bugUpdate.created_at) %></a></td>
 				<td><%= bugUpdate.username %></td>
-				<td><%= bugUpdate.action %></td>
 				<td><a href="<%= bugUpdate.bug.url %>" target="github"><%= bugUpdate.bug.title %></a></td>
+				<td><%= bugUpdate.action %></td>
+				<td><%= bugUpdate.bug.labels.join(', ') %></td>
 				<td><%= bugUpdate.points %> points</td>
 			</tr>
 		<% }) %>
