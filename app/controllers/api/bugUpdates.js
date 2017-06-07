@@ -78,13 +78,14 @@ module.exports = {
 
 	// Create new GitHub Issue
 	createGithubIssue: function (req, res, next) {
-		console.log('**CREATE GH', req.body);
+		console.log('**CREATE GITHUB', JSON.stringify(req.body, null, 2));
 
 		const createBug = function (data, cb) {
 			// Convert issue to Bug
 			var bugObj = _.merge({}, data.issue);
 			bugObj.githubRepositoryId = data.repository.id;
 			bugObj.githubIssueId = data.issue.id;
+			bugObj.githubNumber = data.issue.number;
 			bugObj.url = data.issue.html_url;
 			bugObj.labels = _.map(data.issue.labels, 'name');
 			Bug.findOrCreate({ githubIssueId: data.issue.id }, bugObj, function (err, bug, wasCreated) {

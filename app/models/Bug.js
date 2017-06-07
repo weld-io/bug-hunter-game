@@ -8,6 +8,7 @@ const Schema = mongoose.Schema;
 const BugSchema = new Schema({
 	githubRepositoryId: { type: Number, required: true },
 	githubIssueId: { type: Number, required: true, unique: true },
+	githubNumber: { type: Number },
 	title: { type: String, required: true },
 	url: { type: String, required: true, unique: true },
 	body: String,
