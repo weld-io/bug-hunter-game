@@ -112,6 +112,22 @@ Adapted from [GitHub’s example](https://developer.github.com/v3/activity/event
 	}'
 
 
+## GitHub integration
+
+1. Go to the GitHub Webhooks page for your repository, e.g. `https://github.com/USERNAME/REPONAME/settings/hooks`
+2. Create a new webhook:
+	* Payload URL: `https://YOUR-SERVER-NAME/api/github-issues`
+	* Content type: `application/json`
+	* Individual events: Issues + Issue comment
+
+
+## Slack integration
+
+1. Create a new Slack app: [https://api.slack.com/apps](https://api.slack.com/apps)
+2. Set the environment variable `SLACK_WEBHOOK_URL` to the URL that Slack generated for you.
+3. Set up a scheduled task (e.g. using Heroku Scheduler) that runs `node app/scheduler/postToSlack.js` for instance once a day.
+
+
 ## Deploying on Heroku
 
 	# Set up and configure app
