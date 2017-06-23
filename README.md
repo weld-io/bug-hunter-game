@@ -12,11 +12,11 @@ Set environment variables:
 
 Start with:
 
-	npm start
+	npm run-script dev # development mode
 
 or
 
-	npm run-script dev
+	npm start # production mode
 
 Server will default to **http://localhost:3033**
 
