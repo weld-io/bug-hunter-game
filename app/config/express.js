@@ -21,8 +21,9 @@ module.exports = function (app, config) {
 	//app.use(cookieParser());
 	app.use(compress());
 	app.use(express.static(config.root + '/public'));
-	// flexsite NPM
+	// Other NPMs
 	app.use('/flexsite', express.static(config.root + '/node_modules/flexsite'));
+	app.use('/weld-design-kit', express.static(config.root + '/node_modules/@weld-io/weld-design-kit'));
 	//app.use(methodOverride());
 	//app.use(cors());
 

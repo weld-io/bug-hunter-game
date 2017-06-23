@@ -11,6 +11,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@weld-io/weld-design-kit": "^1.1.1",
     "async": "^2.4.1",
     "body-parser": "^1.17.1",
     "compression": "^1.6.2",

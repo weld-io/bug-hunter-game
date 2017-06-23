@@ -1,33 +1,21 @@
 /* ----- Colors ----- */
 
-.color1 { background-color: hsl(194, 67%, 54%); }
-.color2 { background-color: hsl(4, 98%, 65%); color: white; }
-.color3 { background-color: hsl(46, 87%, 56%); }
-.color1light { background-color: hsl(194, 66%, 87%); }
-.color2light { background-color: hsl(5, 98%, 84%); }
-
-.color1-text { color: hsl(194, 67%, 54%); }
-.color2-text { color: hsl(4, 98%, 65%); }
-.color3-text { color: hsl(46, 87%, 56%); }
-.color1light-text { color: hsl(194, 66%, 87%); }
-.color2light-text { color: hsl(5, 98%, 84%); }
-
 thead tr {
-	background-color: hsla(46, 87%, 56%, 1);
-}
-
-tbody tr:nth-child(2n+0) {
-	background-color: hsla(46, 87%, 56%, 0.5);
+	background-color: #47e2a1; /* .weld_green */
 }
 
 tbody tr:nth-child(2n+1) {
-	background-color: hsla(46, 87%, 56%, 0.1);
+	background-color: hsla(0, 0%, 100%, 0.2);
+}
+
+tbody tr:nth-child(2n+0) {
+	background-color: hsla(0, 0%, 100%, 0.6);
 }
 
 /* ----- Fonts ----- */
 
 body {
-	font-family: 'Ubuntu', sans-serif;
+	font-family: 'weld-light', sans-serif;
 	font-size: 20px;
 }
 
