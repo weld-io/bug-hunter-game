@@ -3,7 +3,7 @@
 <section class="weld_cyan">
 	<h1><%- title %></h1>
 
-	<nav>
+	<nav class="highscoreNavigation">
 		<span class="periods">
 			<%- optionalAnchorTag('Daily', '/highscore/daily/' + timeperiod.startDate + '/' + timeperiod.endDate, currentHref) %>
 			<%- optionalAnchorTag('Weekly', '/highscore/weekly/' + timeperiod.startDate + '/' + timeperiod.endDate, currentHref) %>
@@ -12,8 +12,10 @@
 			<%- optionalAnchorTag('All time', '/highscore/all-time', currentHref) %>
 		</span>
 	<% if (timeperiod.grouping !== 'all-time') { %>
+		<span class="dateSelectors">
 			<input type="date" name="startDate" value="<%= timeperiod.startDate %>" onchange="BugHunterGame.changeDate(this.value, ['<%= timeperiod.grouping %>', '<%= timeperiod.startDate %>', '<%= timeperiod.endDate %>'], 1)">
 			<input type="date" name="endDate" value="<%= timeperiod.endDate %>" onchange="BugHunterGame.changeDate(this.value, ['<%= timeperiod.grouping %>', '<%= timeperiod.startDate %>', '<%= timeperiod.endDate %>'], 2)">
+		</span>
 	<% } %>
 	</nav>
 </section>

@@ -69,12 +69,6 @@ const calculateHighscore = function (timeper, callback) {
 		// '22-baxterthehacker': { timevalue: '22', username: 'baxterthehacker', points: 10 },
 		const updatesSummary = _.reduce(updatesMod, function (summ, upd) {
 			const keyName = upd.timevalue + '-' + upd.username;
-			// const defaultValues = {
-			// 	timevalue: upd.timevalue,
-			// 	timevalueToDisplay: upd.timevalueToDisplay,
-			// 	username: upd.username,
-			// 	points: 0,
-			// };
 			const defaultValues = _.merge({}, upd, { points: 0 });
 			summ[keyName] = summ[keyName] || defaultValues;
 			summ[keyName].points += upd.points;
@@ -91,7 +85,6 @@ module.exports = {
 	getCurrentYearDate: getCurrentYearDate,
 	calculateHighscore: calculateHighscore,
 
-
 	index: function (req, res, next) {
 
 		const timeperiod = {
@@ -101,6 +94,7 @@ module.exports = {
 		};
 
 		const renderHighscore = function (err, timeper, results) {
+			console.log('timeper', timeper);
 			res.render(
 				'updates/highscore',
 				{

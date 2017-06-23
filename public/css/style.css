@@ -39,3 +39,18 @@ a:hover {
 .current {
 	font-weight: bold;
 }
+
+.highscoreNavigation {
+	display: inline-flex;
+	flex-direction: row;
+}
+
+.dateSelectors {
+	/* Flexbox: */
+	display: inline-flex;
+	flex-direction: row;
+}
+
+.dateSelectors input {
+	width: 8em;
+}
