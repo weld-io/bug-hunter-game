@@ -21,6 +21,8 @@ module.exports = function (app, config) {
 	//app.use(cookieParser());
 	app.use(compress());
 	app.use(express.static(config.root + '/public'));
+	// flexsite NPM
+	app.use('/flexsite', express.static(config.root + '/node_modules/flexsite'));
 	//app.use(methodOverride());
 	//app.use(cors());
 

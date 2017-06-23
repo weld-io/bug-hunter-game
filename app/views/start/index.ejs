@@ -1,17 +1,23 @@
 <% include ../shared/header %>
 
-<h1><%- title %></h1>
+<section class="color1">
+	<h1><%- title %></h1>
+</section>
 
-<h2>How to get points</h2>
+<section class="color2">	
+	<h2>How to get points</h2>
 
-<ol>
-	<li>Go to <a href="<%- githubUrl %>" target="github">GitHub Issues for your project</a>.</li>
-	<li>Create, close, or edit issues.</li>
-	<li>Track progress on the <a href="/highscore">Highscore</a>.</li>
-</ol>
+	<ol>
+		<li>Go to <a href="<%- githubUrl %>" target="github">GitHub Issues for your project</a>.</li>
+		<li>Create, close, or edit issues.</li>
+		<li>Track progress on the <a href="/highscore">Highscore</a>.</li>
+	</ol>
+</section>
 
-<h2>Scoring</h2>
+<section class="color3">	
+	<h2>Scoring</h2>
 
-<%- objectToHtml(scoringTable) %>
+	<%- objectToHtml(scoringTable) %>
+</section>
 
 <% include ../shared/footer %>

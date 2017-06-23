@@ -1,126 +1,52 @@
-/*
+/* ----- Colors ----- */
 
-#000000
-#252b30
-#4b5560
-#708090
-#a0aab5
-#cfd5da
-#ffffff
+.color1 { background-color: hsl(194, 67%, 54%); }
+.color2 { background-color: hsl(4, 98%, 65%); color: white; }
+.color3 { background-color: hsl(46, 87%, 56%); }
+.color1light { background-color: hsl(194, 66%, 87%); }
+.color2light { background-color: hsl(5, 98%, 84%); }
 
-*/
-
-body {
-	font-family: sans-serif;
-	color: #4b5560;
-	font-size: 20px;
-	margin: 0;
-	padding: 0;
-}
-
-main {
-	padding: 5vw;
-	max-width: 40rem;
-	margin: auto;
-}
-
-nav {
-	background-color: #cfd5da;
-	padding: 1em;
-	margin: 1em 0;
-	font-size: 80%;
-}
-
-nav#main-navigation {
-	max-width: 40rem;
-	margin: auto;
-	margin: -5vw 0 5vw;
-}
-
-h1, h2, h3 {
-	line-height: 1em;
-	margin: 0 0 0.5em;
-}
-
-/* Nice & simple: Table - https://codepen.io/tomsoderlund/pen/mmZrRR */
-table {
-	border-collapse: collapse;
-}
-
-td, th {
-	border: 2px solid #708090;
-	padding: 0.5em;
-}
+.color1-text { color: hsl(194, 67%, 54%); }
+.color2-text { color: hsl(4, 98%, 65%); }
+.color3-text { color: hsl(46, 87%, 56%); }
+.color1light-text { color: hsl(194, 66%, 87%); }
+.color2light-text { color: hsl(5, 98%, 84%); }
 
 thead tr {
-	background-color: #708090;
-	color: white;
+	background-color: hsla(46, 87%, 56%, 1);
 }
 
-tr:nth-child(2n+0) {
-	background-color: #cfd5da;
+tbody tr:nth-child(2n+0) {
+	background-color: hsla(46, 87%, 56%, 0.5);
 }
 
-/* Nice & simple: Button - http://codepen.io/tomsoderlund/pen/qqyzqp */
-button {
-	background-color: dodgerblue;
-	border-radius: 0.2em;
-	border: none;
-	box-shadow: 0 2px 2px rgba(0,0,0,0.3);
-	box-sizing: border-box;
-	color: white;
-	cursor: pointer;
-	font-family: inherit;
-	font-size: inherit;
-	min-width: 15em;
-	outline: none;
-	padding: 0.6em;
-	margin: 0.2em;
-	transition: all 0.2s;
-}
-button:hover {
-	opacity: 0.8;
-	transition: box-shadow 0s;
-}
-button:active {
-	margin-top: 0.3em;
-	margin-bottom: 0.1em;
-	box-shadow: 0 0.5px 2px rgba(0,0,0,0.4);
+tbody tr:nth-child(2n+1) {
+	background-color: hsla(46, 87%, 56%, 0.1);
 }
 
-/* Nice & simple: Input and Dropdown Menu - http://codepen.io/tomsoderlund/pen/GNBbWz */
-input,
-textarea,
-select {
-	outline: none;
-	resize: none;
-	box-sizing: border-box;
-	background-color: white;
-	border-radius: 0.2em;
-	border: 2px solid lightgray;
+/* ----- Fonts ----- */
+
+body {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 20px;
+}
+
+/* ----- Navigation ----- */
+
+nav {
+	display: inline-block;
+}
+
+a {
 	color: inherit;
-	font-family: inherit;
-	font-size: inherit;
-	/*min-width: 15em;*/
-	padding: 0.6em;
-	margin: 0.2em;
+	opacity: 0.7;
+	transition: opacity 0.25s;
 }
-input:hover,
-textarea:hover,
-select:hover {
-	border-color: silver;
-}
-input:focus,
-textarea:focus,
-select:focus {
-	border-color: darkgray;
+a:hover {
+	opacity: 1;
 }
 
 /* ----- Highscore ----- */
-
-.datePickers {
-	display: inline-block;
-}
 
 .current {
 	font-weight: bold;
