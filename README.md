@@ -2,6 +2,11 @@
 
 Bug Hunter Game is an web service that turns GitHub Issues into a game.
 
+![Bug Hunter Game](resources/example.jpg)
+
+Made by the team at **Weld** ([www.weld.io](https://www.weld.io?utm_source=github-subscriptions-as-a-service)), the #codefree app and web creation tool:
+
+[![Weld](https://s3-eu-west-1.amazonaws.com/weld-social-and-blog/gif/weld_explained.gif)](https://www.weld.io?utm_source=github-bug-hunter-game)
 
 ## How to Run
 
