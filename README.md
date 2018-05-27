@@ -14,7 +14,7 @@ Made by the team at **Weld** ([www.weld.io](https://www.weld.io?utm_source=githu
 Set environment variables:
 
 	export SLACK_WEBHOOK_URL=https://hooks.slack.com/services/...
-	export GITHUB_PROJECT_ID=username/projectname
+	export GITHUB_PROJECT_ID=username/projectname  // Note: Bug Hunter Game supports multiple projects for posting issues, but here you can only have one
 
 Start with:
 
@@ -120,12 +120,13 @@ Adapted from [GitHub’s example](https://developer.github.com/v3/activity/event
 
 ## GitHub integration
 
-1. Go to the GitHub Webhooks page for your repository, e.g. `https://github.com/USERNAME/REPONAME/settings/hooks`
+1. Go to the GitHub Webhooks page for your project, e.g. `https://github.com/USERNAME/REPONAME/settings/hooks`
 2. Create a new webhook:
 	* Payload URL: `https://YOUR-SERVER-NAME/api/github-issues`
 	* Content type: `application/json`
 	* Individual events: Issues + Issue comment
 
+Note: Bug Hunter Game supports multiple projects for posting issues.
 
 ## Slack integration
 
