@@ -28,8 +28,8 @@ const getTimeValues = function (dateObj, grouping) {
 			values.periodEndDate = momDate.clone().add(1, 'days').format('YYYY-MM-DD');
 			break;
 		case 'weekly':
-			values.timevalue = momDate.format('YYYY') + '-w' + momDate.format('W');
-			values.timevalueToDisplay = 'w' + momDate.format('W');
+			values.timevalue = momDate.format('YYYY') + '-w' + momDate.format('WW'); // e.g. w02, for sorting
+			values.timevalueToDisplay = 'w' + momDate.format('W'); // e.g. w2
 			values.periodStartDate = momDate.clone().startOf('isoweek').format('YYYY-MM-DD');
 			values.periodEndDate = momDate.clone().startOf('isoweek').add(1, 'weeks').format('YYYY-MM-DD');
 			break;
