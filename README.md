@@ -73,6 +73,38 @@ Delete all bug updates:
 
 	curl -X DELETE http://localhost:3033/api/updates/ALL
 
+
+## GitHub integration
+
+1. Go to the GitHub Webhooks page for your repository, e.g. `https://github.com/USERNAME/REPOSITORY/settings/hooks`
+2. Create a new webhook:
+	* Payload URL: `https://YOUR-SERVER-NAME/api/github-issues`
+	* Content type: `application/json`
+	* Individual events: Issues + Issue comment
+
+**Note:** Bug Hunter Game supports multiple repositorys for posting issues. Each will need it’s a webhook set up.
+
+![GitHub Webhooks page](resources/github-instructions.jpg)
+
+## Slack integration
+
+1. Create a new Slack app: [https://api.slack.com/apps](https://api.slack.com/apps)
+2. Set the environment variable `SLACK_WEBHOOK_URL` to the URL that Slack generated for you.
+3. Set up a scheduled task (e.g. using Heroku Scheduler) that runs `node app/scheduler/postToSlack.js` for instance once a day.
+
+
+## Deploying on Heroku
+
+	# Set up and configure app
+	heroku create MYAPPNAME
+	heroku config:set NODE_ENV=production
+	heroku config:set HOSTNAME=https://MYAPPNAME.herokuapp.com
+	heroku config:set SLACK_WEBHOOK_URL=https://hooks.slack.com/services/...
+	heroku config:set GITHUB_PROJECT_ID=username/projectname
+	heroku addons:create mongolab
+	git push heroku master
+
+
 ### GitHub webhook
 
 Adapted from [GitHub’s example](https://developer.github.com/v3/activity/events/types/#issuesevent).
@@ -116,32 +148,3 @@ Adapted from [GitHub’s example](https://developer.github.com/v3/activity/event
 			"name": "public-repo"
 		}
 	}'
-
-
-## GitHub integration
-
-1. Go to the GitHub Webhooks page for your project, e.g. `https://github.com/USERNAME/REPONAME/settings/hooks`
-2. Create a new webhook:
-	* Payload URL: `https://YOUR-SERVER-NAME/api/github-issues`
-	* Content type: `application/json`
-	* Individual events: Issues + Issue comment
-
-Note: Bug Hunter Game supports multiple projects for posting issues.
-
-## Slack integration
-
-1. Create a new Slack app: [https://api.slack.com/apps](https://api.slack.com/apps)
-2. Set the environment variable `SLACK_WEBHOOK_URL` to the URL that Slack generated for you.
-3. Set up a scheduled task (e.g. using Heroku Scheduler) that runs `node app/scheduler/postToSlack.js` for instance once a day.
-
-
-## Deploying on Heroku
-
-	# Set up and configure app
-	heroku create MYAPPNAME
-	heroku config:set NODE_ENV=production
-	heroku config:set HOSTNAME=https://MYAPPNAME.herokuapp.com
-	heroku config:set SLACK_WEBHOOK_URL=https://hooks.slack.com/services/...
-	heroku config:set GITHUB_PROJECT_ID=username/projectname
-	heroku addons:create mongolab
-	git push heroku master
